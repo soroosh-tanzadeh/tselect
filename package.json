@@ -1,26 +1,26 @@
 {
   "name": "tselect",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/tselect.ssr.js",
   "browser": "dist/tselect.esm.js",
   "module": "dist/tselect.esm.js",
   "unpkg": "dist/tselect.min.js",
-  "homepage": "https://github.com/soroosh/tselect",
-  "license":"GPL-3.0",
+  "homepage": "https://github.com/soroosh-tanzadeh/tselect",
+  "license": "GPL-3.0",
   "files": [
     "dist/*",
     "src/**/*.vue",
     "README.md"
   ],
   "author": {
-    "name" : "Soroosh Tanzadeh",
-    "email" : "soroosh081@gmail.com",
-    "url" : "https://soroosh.ternobo.info/"
+    "name": "Soroosh Tanzadeh",
+    "email": "soroosh081@gmail.com",
+    "url": "https://soroosh.ternobo.info/"
   },
-  "repository":{
-      "type": "git",
-      "url": "https://github.com/soroosh/tselect.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soroosh-tanzadeh/tselect.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",

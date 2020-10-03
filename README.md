@@ -12,7 +12,7 @@ npm install tselect
 
 ## Usage
 
-```vuejs
+```html
 <script>
 import {
     Tselect

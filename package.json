@@ -11,7 +11,7 @@
   "files": [
     "dist/*",
     "src/**/*.vue",
-    "src/readme.md"
+    "README.md"
   ],
   "author": {
     "name" : "Soroosh Tanzadeh",

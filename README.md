@@ -1,6 +1,6 @@
 # TSelect
 
-Everything you wish the HTML <select> element could do, wrapped up into a lightweight, extensible Vue component with more beautiful interface.
+Everything you wish the HTML ```<select>``` element could do, wrapped up into a lightweight, extensible Vue component with more beautiful interface.
 
 ## Installation
 

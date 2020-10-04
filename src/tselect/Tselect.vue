@@ -98,7 +98,7 @@ export default {
         },
         openDropdown() {
             this.$refs.titleSection.classList.toggle("active");
-            const width = this.$refs.titleSection.offsetWidth - 10;
+            const width = this.$refs.titleSection.offsetWidth;
             this.showItems = !this.showItems;
             this.dropdownWidth = width + "px";
         },

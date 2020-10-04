@@ -19,7 +19,7 @@
                     <label class="tselect_item--text"><i class="material-icons verical-middle" v-if="item.hasOwnProperty('icon')">{{ item.icon }}</i>
                         {{ item.name }}</label>
                     <div class="tdc-radio">
-                        <input type="radio" class="tdc-radio_input" :checked="selectedItem.value === item.value" />
+                        <input type="radio" class="tdc-radio_input" :checked="isChecked(item)" />
                         <span class="tdc-radio_checkmark"></span>
                     </div>
                 </div>
@@ -80,6 +80,12 @@ export default {
     },
     name: "Tselect",
     methods: {
+        isChecked(item) {
+            if (selectedItem !== undefined) {
+                return (selectedItem.value === item.value);
+            }
+            return false;
+        },
         selectItem(item) {
             this.selectedItem = item;
             this.$emit("input", item);

@@ -81,8 +81,8 @@ export default {
     name: "Tselect",
     methods: {
         isChecked(item) {
-            if (selectedItem !== undefined) {
-                return (selectedItem.value === item.value);
+            if (this.selectedItem !== undefined) {
+                return (this.selectedItem.value === item.value);
             }
             return false;
         },

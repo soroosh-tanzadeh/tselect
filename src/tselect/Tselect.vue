@@ -92,7 +92,7 @@ export default {
     methods: {
         isChecked(item) {
             if (this.selectedItem !== undefined) {
-                return (this.selectedItem.value === item.value);
+                return (this.selectedItem[this.valueOption] === item[this.valueOption]);
             }
             return false;
         },

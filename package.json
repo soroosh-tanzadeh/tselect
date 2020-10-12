@@ -1,7 +1,7 @@
 {
   "name": "tselect",
-  "version": "0.1.5",
-  "description": "",
+  "version": "0.1.6",
+  "description": "Dropdown menu for VueJs",
   "main": "dist/tselect.ssr.js",
   "browser": "dist/tselect.esm.js",
   "module": "dist/tselect.esm.js",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "https://github.com/soroosh-tanzadeh/tselect.git"
   },
-  "keywords":[
+  "keywords": [
     "dropdown",
     "menu",
     "select"
@@ -35,6 +35,7 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {
+    "node-sass": "^4.14.1",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "scss": "^0.2.4"

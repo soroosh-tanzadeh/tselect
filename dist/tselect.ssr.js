@@ -96,6 +96,30 @@ var script = {
       this.selectedItem = newValue;
     }
   },
+  directives: {
+    'click-outside': {
+      bind: function bind(el, binding) {
+        console.log(binding); // Define ourClickEventHandler
+
+        var ourClickEventHandler = function ourClickEventHandler(event) {
+          if (!el.contains(event.target) && el !== event.target) {
+            // as we are attaching an click event listern to the document (below)
+            // ensure the events target is outside the element or a child of it
+            binding.value(event); // before binding it
+          }
+        }; // attached the handler to the element so we can remove it later easily
+
+
+        el.__vueClickEventHandler__ = ourClickEventHandler; // attaching ourClickEventHandler to a listener on the document here
+
+        document.addEventListener("click", ourClickEventHandler);
+      },
+      unbind: function unbind(el) {
+        // Remove Event Listener
+        document.removeEventListener("click", el.__vueClickEventHandler__);
+      }
+    }
+  },
   props: {
     newItemPlaceholder: {
       type: String,
@@ -143,6 +167,10 @@ var script = {
   },
   name: "Tselect",
   methods: {
+    close: function close(event) {
+      this.showItems = false;
+      this.$refs.titleSection.classList.remove("active");
+    },
     isChecked: function isChecked(item) {
       if (this.selectedItem !== undefined) {
         return this.selectedItem[this.valueOption] === item[this.valueOption];
@@ -240,46 +268,6 @@ var script = {
         }
     }
     return script;
-}function createInjectorSSR(context) {
-    if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-    }
-    if (!context)
-        return () => { };
-    if (!('styles' in context)) {
-        context._styles = context._styles || {};
-        Object.defineProperty(context, 'styles', {
-            enumerable: true,
-            get: () => context._renderStyles(context._styles)
-        });
-        context._renderStyles = context._renderStyles || renderStyles;
-    }
-    return (id, style) => addStyle(id, style, context);
-}
-function addStyle(id, css, context) {
-    const group =  css.media || 'default' ;
-    const style = context._styles[group] || (context._styles[group] = { ids: [], css: '' });
-    if (!style.ids.includes(id)) {
-        style.media = css.media;
-        style.ids.push(id);
-        let code = css.source;
-        style.css += code + '\n';
-    }
-}
-function renderStyles(styles) {
-    let css = '';
-    for (const key in styles) {
-        const style = styles[key];
-        css +=
-            '<style data-vue-ssr-id="' +
-                Array.from(style.ids).join(' ') +
-                '"' +
-                (style.media ? ' media="' + style.media + '"' : '') +
-                '>' +
-                style.css +
-                '</style>';
-    }
-    return css;
 }/* script */
 var __vue_script__ = script;
 /* template */
@@ -296,7 +284,19 @@ var __vue_render__ = function __vue_render__() {
     attrs: {
       "dir": _vm.direction
     }
-  }, [_vm._ssrNode("<div class=\"tselect_title\" data-v-437141ce>", "</div>", [_vm._ssrNode("<div class=\"title-text\" data-v-437141ce>", "</div>", [_vm.selectedItem === undefined ? _vm._ssrNode("<span data-v-437141ce>", "</span>", [_vm._t("default")], 2) : _vm._e(), _vm._ssrNode(" " + (_vm.selectedItem !== undefined ? "<span data-v-437141ce>" + (_vm.selectedItem.hasOwnProperty('icon') ? "<i class=\"material-icons verical-middle\" data-v-437141ce>" + _vm._ssrEscape(_vm._s(_vm.selectedItem.icon)) + "</i>" : "<!---->") + "<span data-v-437141ce>" + _vm._ssrEscape(" " + _vm._s(_vm.selectedItem.name) + " ") + "</span></span>" : "<!---->"))], 2), _vm._ssrNode(" <i class=\"material-icons tselect_arrow\" data-v-437141ce>keyboard_arrow_down</i>")], 2), _vm._ssrNode(" "), _c('transition', {
+  }, [_c('div', {
+    directives: [{
+      name: "click-outside",
+      rawName: "v-click-outside",
+      value: _vm.close,
+      expression: "close"
+    }],
+    ref: "titleSection",
+    staticClass: "tselect_title",
+    on: {
+      "click": _vm.openDropdown
+    }
+  }, [_vm._ssrNode("<div class=\"title-text\" data-v-16eeafea>", "</div>", [_vm.selectedItem === undefined ? _vm._ssrNode("<span data-v-16eeafea>", "</span>", [_vm._t("default")], 2) : _vm._e(), _vm._ssrNode(" " + (_vm.selectedItem !== undefined ? "<span data-v-16eeafea>" + (_vm.selectedItem.hasOwnProperty('icon') ? "<i class=\"material-icons verical-middle\" data-v-16eeafea>" + _vm._ssrEscape(_vm._s(_vm.selectedItem.icon)) + "</i>" : "<!---->") + "<span data-v-16eeafea>" + _vm._ssrEscape(" " + _vm._s(_vm.selectedItem.name) + " ") + "</span></span>" : "<!---->"))], 2), _vm._ssrNode(" <i class=\"material-icons tselect_arrow\" data-v-16eeafea>keyboard_arrow_down</i>")], 2), _vm._ssrNode(" "), _c('transition', {
     attrs: {
       "name": "slide"
     }
@@ -381,30 +381,26 @@ var __vue_render__ = function __vue_render__() {
 var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
-  if (!inject) return;
-  inject("data-v-437141ce_0", {
-    source: "@charset \"UTF-8\";@font-face{font-family:\"Material Icons\";font-style:normal;font-weight:400;src:url(fonts/google-material/material-icons.woff2) format(\"woff2\")}@font-face{font-family:\"Material Icons Outlined\";font-style:normal;font-weight:400;src:url(fonts/google-material/material-icons-outline.woff2) format(\"woff2\")}@font-face{font-family:\"Material Icons Round\";font-style:normal;font-weight:400;src:url(fonts/google-material/material-icons-rounded.woff2) format(\"woff2\")}@font-face{font-family:\"Material Icons Sharp\";font-style:normal;font-weight:400;src:url(fonts/google-material/material-icons-sharp.woff2) format(\"woff2\")}@font-face{font-family:\"Material Icons Two Tone\";font-style:normal;font-weight:400;src:url(fonts/google-material/material-icons-two-tone.woff2) format(\"woff2\")}.material-icons[data-v-437141ce]{font-family:\"Material Icons\";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:\"liga\";-webkit-font-smoothing:antialiased;vertical-align:middle}.material-icons-outlined[data-v-437141ce]{font-family:\"Material Icons Outlined\";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:\"liga\";-webkit-font-smoothing:antialiased;vertical-align:middle}.material-icons-round[data-v-437141ce]{font-family:\"Material Icons Round\";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:\"liga\";-webkit-font-smoothing:antialiased;vertical-align:middle}.material-icons-sharp[data-v-437141ce]{font-family:\"Material Icons Sharp\";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:\"liga\";-webkit-font-smoothing:antialiased;vertical-align:middle}.material-icons-two-tone[data-v-437141ce]{font-family:\"Material Icons Two Tone\";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:\"liga\";-webkit-font-smoothing:antialiased}.tdc-radio[data-v-437141ce]{display:block;position:relative;height:14px;width:14px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.tdc-radio input.tdc-radio_input[data-v-437141ce]{position:absolute;opacity:0;cursor:pointer}.tdc-radio .tdc-radio_checkmark[data-v-437141ce]{transition:.3s all;display:flex;align-items:center;justify-content:center;position:absolute;top:0;right:0;height:14px;width:14px;background-color:transparent;border:2px solid #757575;border-radius:50%}.tdc-radio input.tdc-radio_input:hover~.tdc-radio_checkmark[data-v-437141ce]{border-color:#424242}.tdc-radio input.tdc-radio_input:checked~.tdc-radio_checkmark[data-v-437141ce]{border-color:#424242}.tdc-radio input.tdc-radio_input:checked~.tdc-radio_checkmark[data-v-437141ce]:after{content:\"\";height:6px;width:6px;background:#424242;border-radius:50%}.tselect[data-v-437141ce]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:100%}.tselect .title-text[data-v-437141ce]{font-size:12px}.tselect .tselect_title[data-v-437141ce]{display:flex;align-items:center;justify-content:space-between;background:#f5f5f5;color:#757575;border-radius:15px;padding:5px 5px}.tselect .tselect_title.active[data-v-437141ce]{border-radius:15px 15px 0 0}.tselect .tselect_title.active .tselect_arrow[data-v-437141ce]{transform:rotate(180deg)}.tselect .tselect_title i[data-v-437141ce],.tselect .tselect_title span[data-v-437141ce]{color:#757575;transition:.3s all}.tselect .tselect-items[data-v-437141ce]{position:absolute;background:#f5f5f5;color:#757575;border-radius:0 0 15px 15px;padding:5px;z-index:99999}.tselect .tselectـnew_item--input:focus~i[data-v-437141ce]{color:#707070!important}.tselect .tselect-items .items[data-v-437141ce]{display:flex;flex-direction:column;justify-content:center;align-items:center;max-height:210px;padding-top:20px;overflow:auto}.tselect .tselect_item[data-v-437141ce]{display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:5px 14px 5px 14px;cursor:pointer;width:calc(100% - 28px)}.tselect .tselect_item .tselect_item--text[data-v-437141ce]{color:#757575;margin:0;cursor:pointer;font-size:12px}.tselect .tselect_item .tselect_item--text.active[data-v-437141ce],.tselect .tselect_item .tselect_item--text[data-v-437141ce]:hover{color:#424242}.tselect .tselect_new-item[data-v-437141ce]{position:relative;display:flex;border-top:1px solid #c8c8c8;flex-wrap:nowrap;padding:10px 0;align-items:center;margin-top:10px}.tselect .tselect_new-item .tselectـnew_item--input[data-v-437141ce]{border-radius:15px;border:1px solid #c8c8c8;width:100%;padding:4px 7px;background:0 0;font-size:12px}.tselect .tselect_new-item i[dir=ltr][data-v-437141ce]{position:absolute;right:10px}.tselect .tselect_new-item i[dir=rtl][data-v-437141ce]{position:absolute;left:10px}.tselect .tselect_new-item .tselectـnew_item--input[data-v-437141ce]::placeholder{color:#c8c8c8}.clickable[data-v-437141ce]{cursor:pointer}ul[data-v-437141ce]{cursor:pointer}.slide-enter-active[data-v-437141ce]{-moz-transition-duration:.3s;-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s;-moz-transition-timing-function:ease-in;-webkit-transition-timing-function:ease-in;-o-transition-timing-function:ease-in;transition-timing-function:ease-in}.slide-leave-active[data-v-437141ce]{-moz-transition-duration:.3s;-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s;-moz-transition-timing-function:cubic-bezier(0,1,.5,1);-webkit-transition-timing-function:cubic-bezier(0,1,.5,1);-o-transition-timing-function:cubic-bezier(0,1,.5,1);transition-timing-function:cubic-bezier(0,1,.5,1)}.slide-enter-to[data-v-437141ce],.slide-leave[data-v-437141ce]{max-height:100px;overflow:hidden}.slide-enter[data-v-437141ce],.slide-leave-to[data-v-437141ce]{overflow:hidden;max-height:0}",
-    map: undefined,
-    media: undefined
-  });
-};
+var __vue_inject_styles__ = undefined;
 /* scoped */
 
-
-var __vue_scope_id__ = "data-v-437141ce";
+var __vue_scope_id__ = "data-v-16eeafea";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-437141ce";
+var __vue_module_identifier__ = "data-v-16eeafea";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
+/* style inject */
+
+/* style inject SSR */
+
 /* style inject shadow dom */
 
 var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, createInjectorSSR, undefined);/* eslint-disable import/prefer-default-export */var components=/*#__PURE__*/Object.freeze({__proto__:null,Tselect: __vue_component__});var install = function installTselect(Vue) {
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);/* eslint-disable import/prefer-default-export */var components=/*#__PURE__*/Object.freeze({__proto__:null,Tselect: __vue_component__});var install = function installTselect(Vue) {
   if (install.installed) return;
   install.installed = true;
   Object.entries(components).forEach(function (_ref) {

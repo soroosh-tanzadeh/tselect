@@ -1,6 +1,6 @@
 {
   "name": "tselect",
-  "version": "0.1.62",
+  "version": "0.1.63",
   "description": "Dropdown menu for VueJs",
   "main": "dist/tselect.ssr.js",
   "browser": "dist/tselect.esm.js",

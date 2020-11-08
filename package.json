@@ -1,6 +1,6 @@
 {
   "name": "tselect",
-  "version": "0.1.6",
+  "version": "0.1.62",
   "description": "Dropdown menu for VueJs",
   "main": "dist/tselect.ssr.js",
   "browser": "dist/tselect.esm.js",
@@ -10,7 +10,7 @@
   "license": "GPL-3.0",
   "files": [
     "dist/*",
-    "src/**/*.vue",
+    "src/**/*",
     "README.md"
   ],
   "author": {

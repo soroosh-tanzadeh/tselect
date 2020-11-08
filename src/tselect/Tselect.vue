@@ -1,6 +1,6 @@
 <template>
-<div class="tselect" :dir="direction">
-    <div class="tselect_title" ref="titleSection" v-click-outside="close" @click="openDropdown">
+<div class="tselect" :dir="direction" v-click-outside="close">
+    <div class="tselect_title" ref="titleSection" @click="openDropdown">
         <div class="title-text">
             <span v-if="selectedItem === undefined">
                 <slot>

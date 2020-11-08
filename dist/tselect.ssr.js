@@ -280,23 +280,17 @@ var __vue_render__ = function __vue_render__() {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    staticClass: "tselect",
-    attrs: {
-      "dir": _vm.direction
-    }
-  }, [_c('div', {
     directives: [{
       name: "click-outside",
       rawName: "v-click-outside",
       value: _vm.close,
       expression: "close"
     }],
-    ref: "titleSection",
-    staticClass: "tselect_title",
-    on: {
-      "click": _vm.openDropdown
+    staticClass: "tselect",
+    attrs: {
+      "dir": _vm.direction
     }
-  }, [_vm._ssrNode("<div class=\"title-text\" data-v-16eeafea>", "</div>", [_vm.selectedItem === undefined ? _vm._ssrNode("<span data-v-16eeafea>", "</span>", [_vm._t("default")], 2) : _vm._e(), _vm._ssrNode(" " + (_vm.selectedItem !== undefined ? "<span data-v-16eeafea>" + (_vm.selectedItem.hasOwnProperty('icon') ? "<i class=\"material-icons verical-middle\" data-v-16eeafea>" + _vm._ssrEscape(_vm._s(_vm.selectedItem.icon)) + "</i>" : "<!---->") + "<span data-v-16eeafea>" + _vm._ssrEscape(" " + _vm._s(_vm.selectedItem.name) + " ") + "</span></span>" : "<!---->"))], 2), _vm._ssrNode(" <i class=\"material-icons tselect_arrow\" data-v-16eeafea>keyboard_arrow_down</i>")], 2), _vm._ssrNode(" "), _c('transition', {
+  }, [_vm._ssrNode("<div class=\"tselect_title\" data-v-7efadcdb>", "</div>", [_vm._ssrNode("<div class=\"title-text\" data-v-7efadcdb>", "</div>", [_vm.selectedItem === undefined ? _vm._ssrNode("<span data-v-7efadcdb>", "</span>", [_vm._t("default")], 2) : _vm._e(), _vm._ssrNode(" " + (_vm.selectedItem !== undefined ? "<span data-v-7efadcdb>" + (_vm.selectedItem.hasOwnProperty('icon') ? "<i class=\"material-icons verical-middle\" data-v-7efadcdb>" + _vm._ssrEscape(_vm._s(_vm.selectedItem.icon)) + "</i>" : "<!---->") + "<span data-v-7efadcdb>" + _vm._ssrEscape(" " + _vm._s(_vm.selectedItem.name) + " ") + "</span></span>" : "<!---->"))], 2), _vm._ssrNode(" <i class=\"material-icons tselect_arrow\" data-v-7efadcdb>keyboard_arrow_down</i>")], 2), _vm._ssrNode(" "), _c('transition', {
     attrs: {
       "name": "slide"
     }
@@ -384,10 +378,10 @@ var __vue_staticRenderFns__ = [];
 var __vue_inject_styles__ = undefined;
 /* scoped */
 
-var __vue_scope_id__ = "data-v-16eeafea";
+var __vue_scope_id__ = "data-v-7efadcdb";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-16eeafea";
+var __vue_module_identifier__ = "data-v-7efadcdb";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

@@ -239,17 +239,17 @@ var __vue_render__ = function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    staticClass: "tselect",
-    attrs: {
-      "dir": _vm.direction
-    }
-  }, [_c('div', {
     directives: [{
       name: "click-outside",
       rawName: "v-click-outside",
       value: _vm.close,
       expression: "close"
     }],
+    staticClass: "tselect",
+    attrs: {
+      "dir": _vm.direction
+    }
+  }, [_c('div', {
     ref: "titleSection",
     staticClass: "tselect_title",
     on: {
@@ -349,7 +349,7 @@ var __vue_staticRenderFns__ = [];
 const __vue_inject_styles__ = undefined;
 /* scoped */
 
-const __vue_scope_id__ = "data-v-16eeafea";
+const __vue_scope_id__ = "data-v-7efadcdb";
 /* module identifier */
 
 const __vue_module_identifier__ = undefined;
